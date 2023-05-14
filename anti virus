@@ -1,0 +1,42 @@
+using System;
+using System.IO;
+
+namespace BasicAntiVirus
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the file path to scan:");
+            string filePath = Console.ReadLine();
+
+            if (File.Exists(filePath))
+            {
+                bool isInfected = ScanFile(filePath);
+                if (isInfected)
+                {
+                    Console.WriteLine("The file is infected!");
+                }
+                else
+                {
+                    Console.WriteLine("The file is clean.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("File not found.");
+            }
+
+            Console.ReadLine();
+        }
+
+        static bool ScanFile(string filePath)
+        {
+            // Implement your scanning logic here
+            // This can involve various techniques such as signature-based detection, heuristics, behavioral analysis, etc.
+
+            // For simplicity, let's assume all files with "malware" in their name are considered infected
+            return Path.GetFileName(filePath).ToLower().Contains("malware");
+        }
+    }
+}
